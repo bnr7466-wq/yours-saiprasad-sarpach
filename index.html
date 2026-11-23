@@ -1,183 +1,368 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="te">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yours Saiprasad - Moda Sarpanch Campaign</title>
-  <style>
-    :root {
-      --primary-color: #0056b3;
-      --secondary-color: #ff9933;
-      --accent-color: #138808;
-      --bg-color: #f4f7f6;
-      --text-color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>సర్పంచ్ స్వతంత్ర అభ్యర్థి సాయిప్రసాద్ సాయిప్రసాద్ | అధికారిక వెబ్‌సైట్</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #14532d;       /* ముదురు ఆకుపచ్చ (Deep Forest Green) */
+            --secondary: #16a34a;     /* ప్రకాశవంతమైన ఆకుపచ్చ (Vibrant Green) */
+            --accent: #eab308;        /* స్వల్ప పసుపు/బంగారు హైలైట్ */
+            --light-bg: #f3f8f4;
+            --dark-text: #111827;
+            --muted-text: #374151;
+            --white: #ffffff;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Telugu', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.7;
+        }
 
-    header {
-      background: linear-gradient(135deg, var(--primary-color), #002b5b);
-      color: white;
-      text-align: center;
-      padding: 2.5rem 1rem;
-    }
+        /* నావిగేషన్ బార్ */
+        nav {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary);
+        }
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+        /* హీరో బ్యానర్ */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), #052e16);
+            color: var(--white);
+            padding: 4rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .hero-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+            background-color: #dcfce7;
+        }
+        .hero-text {
+            max-width: 620px;
+        }
+        .badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.35rem 1.1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.9rem;
+        }
+        .hero-text h1 {
+            font-size: 2.3rem;
+            line-height: 1.3;
+            margin-bottom: 0.6rem;
+        }
+        .hero-text p {
+            font-size: 1.05rem;
+            color: #dcfce7;
+            margin-bottom: 1.6rem;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.75rem 1.7rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: #15803d;
+        }
+        .btn-outline {
+            border: 2px solid #bbf7d0;
+            color: var(--white);
+        }
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
 
-    header p {
-      font-size: 1.2rem;
-      color: var(--secondary-color);
-      font-weight: bold;
-    }
+        /* విభాగాలు */
+        section {
+            padding: 3.5rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.2rem;
+        }
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        .section-title h2::after {
+            content: '';
+            width: 60%;
+            height: 4px;
+            background: var(--secondary);
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            border-radius: 2px;
+        }
 
-    .container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+        /* పరిచయం కార్డు */
+        .about-card {
+            background: var(--white);
+            padding: 2.2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(20, 83, 45, 0.08);
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--muted-text);
+            border-left: 6px solid var(--secondary);
+        }
 
-    .hero-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-    }
+        /* అభివృద్ధి పనులు */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .work-card {
+            background: var(--white);
+            padding: 1.7rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(20, 83, 45, 0.07);
+            border-top: 4px solid var(--secondary);
+            transition: transform 0.2s;
+        }
+        .work-card:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--primary);
+        }
+        .work-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-size: 1.15rem;
+        }
+        .work-card p {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
 
-    .hero-image {
-      flex: 1;
-      min-width: 280px;
-      text-align: center;
-    }
+        /* ఫోటో గ్యాలరీ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .gallery-item {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #dcfce7;
+            border: 2px solid #bbf7d0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
 
-    .hero-image img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      border: 4px solid #fff;
-    }
+        /* సంప్రదింపు విభాగం */
+        .contact-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2.8rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .contact-box h2 {
+            margin-bottom: 0.5rem;
+            font-size: 1.7rem;
+        }
+        .contact-box p {
+            margin-bottom: 1.8rem;
+            color: #dcfce7;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            background: var(--white);
+            color: var(--primary);
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .social-btn.wa {
+            background: #052e16;
+            color: var(--white);
+            border: 1px solid #86efac;
+        }
 
-    .hero-text {
-      flex: 1;
-      min-width: 280px;
-    }
+        footer {
+            background: #052e16;
+            color: #bbf7d0;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
 
-    .hero-text h2 {
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      text-align: center;
-      padding-bottom: 1rem;
-    }
-
-    .card img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-    }
-
-    .card h3 {
-      margin: 1rem 0 0.5rem 0;
-      color: var(--primary-color);
-    }
-
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      margin-top: 3rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--secondary-color);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 1rem;
-    }
-
-    .btn:hover {
-      background: #e68a00;
-    }
-  </style>
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-text h1 { font-size: 1.85rem; }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>Moda Sarpanch Campaign</h1>
-    <p>Vote for Progress, Leadership & Trust — Yours Saiprasad</p>
-  </header>
+    <!-- నావిగేషన్ -->
+    <nav>
+        <div class="nav-brand"> సర్పంచ్ స్వతంత్ర అభ్యర్థి సాయిప్రసాద్</div>
+        <ul class="nav-links">
+            <li><a href="#about">పరిచయం</a></li>
+            <li><a href="#works">అభివృద్ధి పనులు</a></li>
+            <li><a href="#gallery">గ్యాలరీ</a></li>
+            <li><a href="#contact">సంప్రదించండి</a></li>
+        </ul>
+    </nav>
 
-  <main class="container">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-image">
-        <img src="DSC_3329.JPG.jpg" alt="Saiprasad Campaign Photo">
-      </div>
-      <div class="hero-text">
-        <h2>Greetings to the Voters of Moda</h2>
-        <p>Working together for transparent governance, rural infrastructure improvement, better sanitation, and youth empowerment across our panchayat.</p>
-        <a href="#contact" class="btn">Support Our Campaign</a>
-      </div>
+    <!-- హీరో బ్యానర్ -->
+    <div class="hero">
+        <img src="photo.jpg" alt="సర్పంచ్ స్వతంత్ర అభ్యర్థి సాయిప్రసాద్" class="hero-img">
+        <div class="hero-text">
+            <span class="badge">స్వతంత్ర అభ్యర్థి • గ్రామ పంచాయతీ సర్పంచ్</span>
+            <h1> మోధ గ్రామ పంచాయతీ సర్పంచ్ స్వతంత్ర అభ్యర్థి సాయిప్రసాద్</h1>
+            <p>ఏ రాజకీయ పార్టీకి అతీతంగా — ప్రజల సేవ, పారదర్శకత మరియు  మోధ గ్రామ పంచాయతీ సమగ్రాభివృద్ధే లక్ష్యంగా పనిచేస్తున్నాను.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">నన్ను సంప్రదించండి</a>
+                <a href="#works" class="btn btn-outline">మా సేవలు &amp; పనులు</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- పరిచయం -->
+    <section id="about">
+        <div class="section-title">
+            <h2>నా పరిచయం</h2>
+        </div>
+        <div class="about-card">
+            <p><strong> మోధ గ్రామ పంచాయతీ సర్పంచ్ స్వతంత్ర అభ్యర్థి సాయిప్రసాద్ </strong>  గ్రామ పంచాయతీ అభివృద్ధికి కట్టుబడి ఉన్న స్వతంత్ర ప్రజా సేవకుడు. పార్టీలకతీతంగా ప్రతి కుటుంబానికి ప్రభుత్వ పథకాలు, మౌలిక సదుపాయాలు అందేలా నిరంతరం ప్రజలకు అందుబాటులో ఉంటూ, ఆదర్శ గ్రామ నిర్మాణం కోసం కృషి చేస్తున్నారు.</p>
+        </div>
     </section>
 
-    <!-- Photo Highlights Section -->
-    <h2 style="text-align:center; color: var(--primary-color); margin-top: 2rem;">Campaign Highlights</h2>
-    <section class="gallery">
-      <div class="card">
-        <img src="DSC_3329.JPG.jpg" alt="Namaste Greeting Photo 1">
-        <h3>Leadership Greetings</h3>
-        <p>Seeking your valuable blessings and support.</p>
-      </div>
-
-      <div class="card">
-        <img src="DSC_3326.JPG.jpg" alt="Namaste Greeting Photo 2">
-        <h3>Panchayat Vision</h3>
-        <p>Dedicated to community development and welfare.</p>
-      </div>
+    <!-- అభివృద్ధి పనులు -->
+    <section id="works">
+        <div class="section-title">
+            <h2>ముఖ్య అభివృద్ధి కార్యక్రమాలు</h2>
+        </div>
+        <div class="grid">
+            <div class="work-card">
+                <h3>🛣️ సిమెంట్ రోడ్లు &amp; డ్రైనేజీ</h3>
+                <p>అన్ని వార్డులలో సిమెంట్ రోడ్ల నిర్మాణం, మురుగునీటి పారుదల వ్యవస్థ మెరుగుదల మరియు పరిశుభ్రత చర్యలు.</p>
+            </div>
+            <div class="work-card">
+                <h3>💧 తాగునీటి సరఫరా</h3>
+                <p>ప్రతి ఇంటికీ సురక్షితమైన మరియు నిరంతర తాగునీరు అందేలా పైపులైన్లు, ఓవర్‌హెడ్ ట్యాంకుల నిర్వహణ.</p>
+            </div>
+            <div class="work-card">
+                <h3>💡 వీధి దీపాలు</h3>
+                <p>గ్రామంలోని ప్రధాన రహదారులు, సందులలో ఎల్ఈడీ వీధి దీపాల ఏర్పాటు ద్వారా రాత్రి వేళల్లో భద్రత.</p>
+            </div>
+            <div class="work-card">
+                <h3>🤝 సంక్షేమ పథకాలు</h3>
+                <p>అర్హులైన ప్రతి ఒక్కరికీ పింఛన్లు, ఇళ్లు, రేషన్, రైతు సంక్షేమ పథకాల విషయంలో పూర్తి సహాయ సహకారాలు.</p>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2026 Moda Sarpanch Campaign | Yours Saiprasad</p>
-  </footer>
+    <!-- ఫోటో గ్యాలరీ -->
+    <section id="gallery">
+        <div class="section-title">
+            <h2>క్షేత్ర పర్యటనలు &amp; కార్యక్రమాలు</h2>
+        </div>
+        <div class="gallery-grid">
+            <img src="work1.jpg" alt="అభివృద్ధి పని 1" class="gallery-item">
+            <img src="work2.jpg" alt="ప్రజా సమావేశం 2" class="gallery-item">
+            <img src="work3.jpg" alt="గ్రామ పర్యటన 3" class="gallery-item">
+        </div>
+    </section>
+
+    <!-- సంప్రదింపు విభాగం -->
+    <section id="contact">
+        <div class="contact-box">
+            <h2>మీ సమస్యలు &amp; సలహాల కోసం సంప్రదించండి</h2>
+            <p>గ్రామ సమస్యలు, వినతులు లేదా సహాయం కోసం నేరుగా సంప్రదించగలరు.</p>
+            <div class="social-links">
+                <a href="tel:+918688137558" class="social-btn">📞 కాల్: +91 8688137558</a>
+                <a href="https://wa.me/919876543210" class="social-btn wa">💬 వాట్సాప్</a>
+                <a href="#" class="social-btn">📘 ఫేస్‌బుక్</a>
+                <a href="#" class="social-btn">📸 ఇన్‌స్టాగ్రామ్</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 మోధ గ్రామ పంచాయతీ సర్పంచ్ స్వతంత్ర అభ్యర్థి సాయిప్రసాద్ — అధికారిక వెబ్‌సైట్. సర్వ హక్కులు ప్రత్యేకించబడినవి.</p>
+    </footer>
 
 </body>
 </html>
