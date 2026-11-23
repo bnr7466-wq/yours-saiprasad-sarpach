@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Independent Candidate Sai Prasad - Campaign Poster Generator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Hind+Guntur:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        independent: {
+                            green: '#059669',
+                            blue: '#0284c7',
+                            gold: '#f59e0b',
+                            navy: '#0f172a',
+                            orange: '#ea580c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Hind Guntur', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #0369a1 50%, #059669 100%);
+        }
+        .canvas-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navigation -->
+    <header class="gradient-bg text-white shadow-lg border-b-4 border-amber-400">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3 text-center md:text-left">
+                <div class="w-12 h-12 rounded-full bg-amber-400 flex items-center justify-center text-slate-900 font-bold text-2xl shadow">
+                    <i class="fa-solid fa-check-to-slot"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide text-amber-300">INDEPENDENT CANDIDATE SAI PRASAD</h1>
+                    <p class="text-xs md:text-sm text-sky-100 font-medium">Vote for Positive Change | Create &amp; Share Your Support Banner</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs font-semibold bg-white/10 px-3 py-1.5 rounded-full border border-white/20">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>GitHub Pages Ready</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT PANEL: Canvas Preview (6 cols on LG) -->
+            <div class="lg:col-span-6 flex flex-col items-center">
+                <div class="sticky top-6 w-full flex flex-col items-center">
+                    <div class="flex justify-between items-center w-full max-w-md mb-2">
+                        <span class="font-semibold text-slate-700 flex items-center gap-2">
+                            <i class="fa-solid fa-eye text-emerald-600"></i> Live Poster Preview
+                        </span>
+                        <span class="text-xs bg-slate-200 text-slate-700 px-2 py-1 rounded">1080 x 1080 px</span>
+                    </div>
+                    
+                    <!-- Canvas Box -->
+                    <div class="relative w-full max-w-md aspect-square bg-slate-900 rounded-xl overflow-hidden canvas-shadow border-4 border-white">
+                        <canvas id="bannerCanvas" width="1080" height="1080" class="w-full h-full object-contain cursor-grab active:cursor-grabbing"></canvas>
+                    </div>
+
+                    <!-- Canvas Drag Hint -->
+                    <p class="text-xs text-slate-500 mt-2 text-center">
+                        <i class="fa-solid fa-hand-pointer"></i> Drag or swipe directly on the canvas to align your photo.
+                    </p>
+
+                    <!-- Export Actions -->
+                    <div class="w-full max-w-md mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <button id="downloadBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 col-span-1 sm:col-span-3 text-lg">
+                            <i class="fa-solid fa-download"></i> Download HD Poster
+                        </button>
+                        <button id="whatsappBtn" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2.5 px-3 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Share WhatsApp
+                        </button>
+                        <button id="instagramBtn" class="bg-gradient-to-r from-purple-500 via-pink-500 to-amber-500 hover:opacity-90 text-white font-semibold py-2.5 px-3 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-brands fa-instagram text-lg"></i> Instagram Share
+                        </button>
+                        <button id="shareApiBtn" class="bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2.5 px-3 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-share-nodes text-lg"></i> Share Poster
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: Customization & Image Controls -->
+            <div class="lg:col-span-6 bg-white p-6 md:p-8 rounded-2xl shadow-md border border-slate-200">
+                
+                <h2 class="text-xl font-bold text-slate-800 border-b pb-3 mb-5 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-emerald-600"></i> Customize Campaign Banner
+                </h2>
+
+                <!-- 1. Photo Upload Section -->
+                <div class="mb-6">
+                    <label class="block text-sm font-bold text-slate-700 mb-2">1. Upload Your Supporter Photo</label>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="userPhotoInput" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-emerald-300 rounded-xl cursor-pointer bg-emerald-50/40 hover:bg-emerald-50 transition">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-600 mb-2"></i>
+                                <p class="mb-1 text-sm text-slate-700 font-semibold">Select photo from your device</p>
+                                <p class="text-xs text-slate-500">PNG, JPG, JPEG, WEBP</p>
+                            </div>
+                            <input id="userPhotoInput" type="file" accept="image/*" class="hidden" />
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 2. Campaign & Supporter Details -->
+                <div class="mb-6 space-y-4">
+                    <label class="block text-sm font-bold text-slate-700">2. Campaign Details &amp; Supporter Text</label>
+                    
+                    <div>
+                        <label for="supporterName" class="block text-xs font-semibold text-slate-600 mb-1">Supporter Name</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <input type="text" id="supporterName" value="Your Name Here" class="pl-10 w-full border border-slate-300 rounded-lg py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-800" placeholder="Enter your name">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="locationText" class="block text-xs font-semibold text-slate-600 mb-1">Village / Ward / Location</label>
+                            <input type="text" id="locationText" value="Your Area / Ward" class="w-full border border-slate-300 rounded-lg py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800">
+                        </div>
+                        <div>
+                            <label for="sloganText" class="block text-xs font-semibold text-slate-600 mb-1">Campaign Slogan</label>
+                            <input type="text" id="sloganText" value="VOTE FOR POSITIVE CHANGE | YOUR VOICE, OUR MISSION" class="w-full border border-slate-300 rounded-lg py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Photo Adjustment Controls -->
+                <div class="mb-6 border-t pt-5">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="block text-sm font-bold text-slate-700">3. Adjust Your Photo Position</label>
+                        <button id="resetTransformBtn" class="text-xs text-emerald-600 hover:text-emerald-800 font-semibold flex items-center gap-1">
+                            <i class="fa-solid fa-rotate-left"></i> Reset Photo
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <!-- Scale Slider -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                                <span><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Scale / Zoom</span>
+                                <span id="scaleVal">100%</span>
+                            </div>
+                            <input type="range" id="scaleSlider" min="0.2" max="3" step="0.05" value="1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        </div>
+
+                        <!-- Rotation Slider -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                                <span><i class="fa-solid fa-rotate mr-1"></i> Rotation</span>
+                                <span id="rotateVal">0°</span>
+                            </div>
+                            <input type="range" id="rotateSlider" min="-180" max="180" step="1" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        </div>
+
+                        <!-- Horizontal Position -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                                <span><i class="fa-solid fa-arrows-left-right mr-1"></i> Position X</span>
+                                <span id="posXVal">0</span>
+                            </div>
+                            <input type="range" id="posXSlider" min="-500" max="500" step="1" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        </div>
+
+                        <!-- Vertical Position -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                                <span><i class="fa-solid fa-arrows-up-down mr-1"></i> Position Y</span>
+                                <span id="posYVal">0</span>
+                            </div>
+                            <input type="range" id="posYSlider" min="-500" max="500" step="1" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Theme Selection -->
+                <div class="border-t pt-5">
+                    <label class="block text-sm font-bold text-slate-700 mb-3">4. Choose Poster Theme</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button class="theme-btn border-2 border-emerald-600 bg-emerald-50 p-2.5 rounded-xl text-center cursor-pointer transition hover:shadow-md" data-theme="emerald">
+                            <div class="w-full h-4 bg-gradient-to-r from-emerald-600 via-sky-600 to-amber-500 rounded mb-1"></div>
+                            <span class="text-xs font-bold text-slate-700 block">Independent Green &amp; Blue</span>
+                        </button>
+                        <button class="theme-btn border-2 border-slate-200 bg-slate-50 p-2.5 rounded-xl text-center cursor-pointer transition hover:shadow-md" data-theme="royal">
+                            <div class="w-full h-4 bg-gradient-to-r from-slate-900 via-amber-600 to-orange-500 rounded mb-1"></div>
+                            <span class="text-xs font-bold text-slate-700 block">Royal Saffron &amp; Navy</span>
+                        </button>
+                        <button class="theme-btn border-2 border-slate-200 bg-slate-50 p-2.5 rounded-xl text-center cursor-pointer transition hover:shadow-md" data-theme="gold">
+                            <div class="w-full h-4 bg-gradient-to-r from-amber-500 via-emerald-600 to-sky-700 rounded mb-1"></div>
+                            <span class="text-xs font-bold text-slate-700 block">Modern Emerald &amp; Gold</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+            <p class="font-semibold text-slate-300">Campaign Banner Generator &copy; 2026 | Independent Candidate Sai Prasad</p>
+            <p class="text-xs text-slate-500 mt-1">Designed for GitHub Pages deployment. Fully processed inside your browser.</p>
+        </div>
+    </footer>
+
+    <!-- Notification Toast Modal -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 transform translate-y-20 opacity-0 flex items-center gap-3 border border-slate-700 z-50">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+        <span id="toastMsg" class="text-sm font-medium">Notification Message</span>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        // --- Candidate SVG Overlay (Matching Namaste Pose in Blue Background) ---
+        const LEADER_IMAGE_SVG = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
+            <defs>
+                <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38bdf8" />
+                    <stop offset="100%" stop-color="#0284c7" />
+                </linearGradient>
+                <linearGradient id="skin" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#a06040" />
+                    <stop offset="100%" stop-color="#733d20" />
+                </linearGradient>
+                <linearGradient id="shirt" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="100%" stop-color="#e2e8f0" />
+                </linearGradient>
+            </defs>
+            <!-- Blue Backdrop -->
+            <rect width="600" height="900" fill="url(#bg)" />
+            
+            <!-- Torso (White Shirt) -->
+            <path d="M 160,340 C 180,260 250,230 300,230 C 350,230 420,260 440,340 L 470,580 L 130,580 Z" fill="url(#shirt)" />
+            <path d="M 130,580 L 470,580 L 460,820 L 140,820 Z" fill="#1e293b" />
+            
+            <!-- Shirt Collars -->
+            <path d="M 250,230 L 300,290 L 270,330 L 240,260 Z" fill="#cbd5e1" />
+            <path d="M 350,230 L 300,290 L 330,330 L 360,260 Z" fill="#e2e8f0" />
+            <circle cx="300" cy="340" r="4" fill="#334155" />
+            <circle cx="300" cy="400" r="4" fill="#334155" />
+            <circle cx="300" cy="460" r="4" fill="#334155" />
+
+            <!-- Neck -->
+            <rect x="270" y="200" width="60" height="50" rx="10" fill="url(#skin)" />
+
+            <!-- Head & Hair -->
+            <path d="M 230,120 C 230,50 370,50 370,120 C 370,190 350,220 300,220 C 250,220 230,190 230,120 Z" fill="url(#skin)" />
+            <path d="M 225,110 C 220,50 380,40 375,110 C 380,80 370,30 300,30 C 230,30 220,80 225,110 Z" fill="#18181b" />
+            <path d="M 235,160 C 240,215 360,215 365,160 C 365,210 350,225 300,225 C 250,225 235,210 235,160 Z" fill="#18181b" />
+            <path d="M 265,170 Q 300,185 335,170 Q 300,175 265,170 Z" fill="#09090b" />
+
+            <!-- Namaste Hands -->
+            <path d="M 160,340 Q 210,380 270,320" stroke="url(#shirt)" stroke-width="45" stroke-linecap="round" fill="none" />
+            <path d="M 440,340 Q 390,380 330,320" stroke="url(#shirt)" stroke-width="45" stroke-linecap="round" fill="none" />
+            <path d="M 285,310 C 285,250 295,240 300,240 C 305,240 315,250 315,310 C 315,325 285,325 285,310 Z" fill="url(#skin)" />
+            <rect x="250" y="325" width="12" height="6" fill="#ef4444" rx="2" />
+            <rect x="338" y="323" width="15" height="10" fill="#94a3b8" rx="2" />
+        </svg>
+        `;
+
+        // Canvas Engine Variables
+        const canvas = document.getElementById('bannerCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let userImage = null;
+        let leaderImage = new Image();
+        
+        let transform = {
+            x: -150,
+            y: 50,
+            scale: 1,
+            rotate: 0
+        };
+
+        let currentTheme = 'emerald';
+        let isDragging = false;
+        let startX, startY;
+
+        // Initialize App
+        window.addEventListener('load', () => {
+            initLeaderImage();
+            setupEventListeners();
+            drawCanvas();
+        });
+
+        function initLeaderImage() {
+            const svgBlob = new Blob([LEADER_IMAGE_SVG], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+            leaderImage.onload = () => {
+                drawCanvas();
+            };
+            leaderImage.src = url;
+        }
+
+        // Render Canvas Function
+        function drawCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Background Fill
+            const bgGradient = ctx.createLinearGradient(0, 0, 1080, 1080);
+            bgGradient.addColorStop(0, '#f8fafc');
+            bgGradient.addColorStop(1, '#e2e8f0');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Render User Image
+            if (userImage) {
+                ctx.save();
+                const centerX = canvas.width / 2 + transform.x;
+                const centerY = canvas.height / 2 + transform.y;
+                
+                ctx.translate(centerX, centerY);
+                ctx.rotate((transform.rotate * Math.PI) / 180);
+                ctx.scale(transform.scale, transform.scale);
+                
+                ctx.drawImage(userImage, -userImage.width / 2, -userImage.height / 2, userImage.width, userImage.height);
+                ctx.restore();
+            } else {
+                ctx.save();
+                ctx.fillStyle = '#cbd5e1';
+                ctx.fillRect(50, 180, 560, 720);
+                ctx.fillStyle = '#475569';
+                ctx.font = 'bold 32px Poppins';
+                ctx.textAlign = 'center';
+                ctx.fillText('Your Supporter Photo Here', 330, 520);
+                ctx.font = '22px Poppins';
+                ctx.fillText('(Click "Select photo" from controls)', 330, 560);
+                ctx.restore();
+            }
+
+            // 3. Render Candidate Photo Overlay (Right Side Frame)
+            if (leaderImage.complete) {
+                ctx.save();
+                const leaderWidth = 480;
+                const leaderHeight = 750;
+                const leaderX = canvas.width - leaderWidth - 20;
+                const leaderY = canvas.height - leaderHeight - 80;
+
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+                ctx.shadowBlur = 20;
+                ctx.shadowOffsetX = -5;
+
+                ctx.drawImage(leaderImage, leaderX, leaderY, leaderWidth, leaderHeight);
+                ctx.restore();
+            }
+
+            // 4. Render Campaign Frame Overlays
+            renderFrameOverlay();
+        }
+
+        function renderFrameOverlay() {
+            const slogan = document.getElementById('sloganText').value || "VOTE FOR POSITIVE CHANGE | YOUR VOICE, OUR MISSION";
+            const supporterName = document.getElementById('supporterName').value || "Your Name Here";
+            const locationText = document.getElementById('locationText').value || "Your Area / Ward";
+
+            let primaryColor, secondaryColor, accentColor;
+
+            if (currentTheme === 'emerald') {
+                primaryColor = '#059669'; // Emerald
+                secondaryColor = '#0f172a'; // Navy/Slate
+                accentColor = '#f59e0b'; // Gold
+            } else if (currentTheme === 'royal') {
+                primaryColor = '#ea580c'; // Saffron Orange
+                secondaryColor = '#0f172a'; // Navy
+                accentColor = '#f59e0b'; // Gold
+            } else { // Modern Gold & Emerald
+                primaryColor = '#0284c7'; // Sky Blue
+                secondaryColor = '#047857'; // Deep Emerald
+                accentColor = '#f59e0b'; // Gold
+            }
+
+            ctx.save();
+
+            // A. TOP HEADER BANNER
+            const topGrad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            topGrad.addColorStop(0, secondaryColor);
+            topGrad.addColorStop(0.5, primaryColor);
+            topGrad.addColorStop(1, secondaryColor);
+            
+            ctx.fillStyle = topGrad;
+            ctx.fillRect(0, 0, canvas.width, 160);
+
+            // Accent Borders
+            ctx.fillStyle = accentColor;
+            ctx.fillRect(0, 160, canvas.width, 10);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 170, canvas.width, 4);
+
+            // Independent Badge Tag
+            ctx.fillStyle = accentColor;
+            ctx.beginPath();
+            ctx.roundRect(40, 18, 270, 36, 18);
+            ctx.fill();
+
+            ctx.fillStyle = '#0f172a';
+            ctx.font = '800 16px Poppins';
+            ctx.textAlign = 'center';
+            ctx.fillText('INDEPENDENT CANDIDATE', 175, 42);
+
+            // Candidate Name Header
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '900 42px Poppins';
+            ctx.textAlign = 'center';
+            ctx.shadowColor = 'rgba(0,0,0,0.6)';
+            ctx.shadowBlur = 8;
+            ctx.fillText('SAI PRASAD', canvas.width / 2 + 60, 68);
+
+            ctx.fillStyle = accentColor;
+            ctx.font = '700 24px Hind Guntur, Poppins';
+            ctx.fillText(slogan.toUpperCase(), canvas.width / 2, 125);
+
+            // B. BOTTOM FOOTER BANNER
+            ctx.shadowBlur = 0;
+
+            const bottomGrad = ctx.createLinearGradient(0, 880, canvas.width, 880);
+            bottomGrad.addColorStop(0, secondaryColor);
+            bottomGrad.addColorStop(1, '#1e293b');
+
+            ctx.fillStyle = bottomGrad;
+            ctx.beginPath();
+            ctx.moveTo(0, 910);
+            ctx.lineTo(canvas.width, 870);
+            ctx.lineTo(canvas.width, 1080);
+            ctx.lineTo(0, 1080);
+            ctx.closePath();
+            ctx.fill();
+
+            // Accent Trim
+            ctx.strokeStyle = accentColor;
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(0, 910);
+            ctx.lineTo(canvas.width, 870);
+            ctx.stroke();
+
+            // Supporter Text
+            ctx.fillStyle = accentColor;
+            ctx.font = '700 22px Poppins';
+            ctx.textAlign = 'left';
+            ctx.fillText(`PROUD SUPPORTER (${locationText.toUpperCase()})`, 40, 955);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '900 44px Hind Guntur, Poppins';
+            ctx.fillText(supporterName.toUpperCase(), 40, 1015);
+
+            // Voting Symbol Badge Icon (Independent Candidate Symbol Box)
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(canvas.width - 70, 975, 38, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = primaryColor;
+            ctx.stroke();
+
+            ctx.fillStyle = primaryColor;
+            ctx.font = 'bold 30px FontAwesome';
+            ctx.textAlign = 'center';
+            ctx.fillText('🗳️', canvas.width - 70, 987);
+
+            ctx.restore();
+        }
+
+        // --- Event Listeners ---
+        function setupEventListeners() {
+            const photoInput = document.getElementById('userPhotoInput');
+            photoInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const img = new Image();
+                        img.onload = () => {
+                            userImage = img;
+                            const scaleFit = Math.max(canvas.width / img.width, canvas.height / img.height) * 0.8;
+                            transform.scale = Math.min(Math.max(scaleFit, 0.3), 1.5);
+                            transform.x = -150;
+                            transform.y = 50;
+                            transform.rotate = 0;
+                            
+                            updateSliderUI();
+                            drawCanvas();
+                            showToast('Photo uploaded successfully!', 'success');
+                        };
+                        img.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            const scaleSlider = document.getElementById('scaleSlider');
+            const rotateSlider = document.getElementById('rotateSlider');
+            const posXSlider = document.getElementById('posXSlider');
+            const posYSlider = document.getElementById('posYSlider');
+
+            scaleSlider.addEventListener('input', (e) => {
+                transform.scale = parseFloat(e.target.value);
+                document.getElementById('scaleVal').innerText = Math.round(transform.scale * 100) + '%';
+                drawCanvas();
+            });
+
+            rotateSlider.addEventListener('input', (e) => {
+                transform.rotate = parseInt(e.target.value);
+                document.getElementById('rotateVal').innerText = transform.rotate + '°';
+                drawCanvas();
+            });
+
+            posXSlider.addEventListener('input', (e) => {
+                transform.x = parseInt(e.target.value);
+                document.getElementById('posXVal').innerText = transform.x;
+                drawCanvas();
+            });
+
+            posYSlider.addEventListener('input', (e) => {
+                transform.y = parseInt(e.target.value);
+                document.getElementById('posYVal').innerText = transform.y;
+                drawCanvas();
+            });
+
+            ['supporterName', 'sloganText', 'locationText'].forEach(id => {
+                document.getElementById(id).addEventListener('input', drawCanvas);
+            });
+
+            document.getElementById('resetTransformBtn').addEventListener('click', () => {
+                transform = { x: -150, y: 50, scale: 1, rotate: 0 };
+                updateSliderUI();
+                drawCanvas();
+            });
+
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('border-emerald-600', 'bg-emerald-50'));
+                    const target = e.currentTarget;
+                    target.classList.add('border-emerald-600', 'bg-emerald-50');
+                    currentTheme = target.getAttribute('data-theme');
+                    drawCanvas();
+                });
+            });
+
+            // Canvas Drag Interactivity
+            canvas.addEventListener('mousedown', (e) => {
+                if (!userImage) return;
+                isDragging = true;
+                const rect = canvas.getBoundingClientRect();
+                const scaleFactor = canvas.width / rect.width;
+                startX = e.clientX * scaleFactor - transform.x;
+                startY = e.clientY * scaleFactor - transform.y;
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const rect = canvas.getBoundingClientRect();
+                const scaleFactor = canvas.width / rect.width;
+                transform.x = e.clientX * scaleFactor - startX;
+                transform.y = e.clientY * scaleFactor - startY;
+                updateSliderUI();
+                drawCanvas();
+            });
+
+            window.addEventListener('mouseup', () => { isDragging = false; });
+
+            canvas.addEventListener('touchstart', (e) => {
+                if (!userImage || e.touches.length !== 1) return;
+                isDragging = true;
+                const rect = canvas.getBoundingClientRect();
+                const scaleFactor = canvas.width / rect.width;
+                startX = e.touches[0].clientX * scaleFactor - transform.x;
+                startY = e.touches[0].clientY * scaleFactor - transform.y;
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging || e.touches.length !== 1) return;
+                const rect = canvas.getBoundingClientRect();
+                const scaleFactor = canvas.width / rect.width;
+                transform.x = e.touches[0].clientX * scaleFactor - startX;
+                transform.y = e.touches[0].clientY * scaleFactor - startY;
+                updateSliderUI();
+                drawCanvas();
+            });
+
+            window.addEventListener('touchend', () => { isDragging = false; });
+
+            document.getElementById('downloadBtn').addEventListener('click', downloadBanner);
+            document.getElementById('whatsappBtn').addEventListener('click', shareToWhatsApp);
+            document.getElementById('instagramBtn').addEventListener('click', shareToInstagram);
+            document.getElementById('shareApiBtn').addEventListener('click', shareNative);
+        }
+
+        function updateSliderUI() {
+            document.getElementById('scaleSlider').value = transform.scale;
+            document.getElementById('scaleVal').innerText = Math.round(transform.scale * 100) + '%';
+            document.getElementById('rotateSlider').value = transform.rotate;
+            document.getElementById('rotateVal').innerText = transform.rotate + '°';
+            document.getElementById('posXSlider').value = transform.x;
+            document.getElementById('posXVal').innerText = Math.round(transform.x);
+            document.getElementById('posYSlider').value = transform.y;
+            document.getElementById('posYVal').innerText = Math.round(transform.y);
+        }
+
+        function downloadBanner() {
+            const dataUrl = canvas.toDataURL('image/png', 1.0);
+            const link = document.createElement('a');
+            const name = (document.getElementById('supporterName').value || 'supporter').replace(/\s+/g, '_');
+            link.download = `Sai_Prasad_Campaign_Poster_${name}.png`;
+            link.href = dataUrl;
+            link.click();
+            showToast('Poster downloaded successfully!', 'success');
+        }
+
+        function shareToWhatsApp() {
+            const name = document.getElementById('supporterName').value || 'A supporter';
+            const text = encodeURIComponent(`I am supporting Independent Candidate Sai Prasad! 🗳️ Vote for Positive Change. Create your campaign poster here: ${window.location.href}`);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        function shareToInstagram() {
+            downloadBanner();
+            showToast('Poster saved! Upload it to your Instagram story or post.', 'info');
+        }
+
+        async function shareNative() {
+            if (navigator.share && canvas.toBlob) {
+                canvas.toBlob(async (blob) => {
+                    const file = new File([blob], 'sai_prasad_campaign_poster.png', { type: 'image/png' });
+                    try {
+                        await navigator.share({
+                            title: 'Independent Candidate Sai Prasad Campaign Poster',
+                            text: 'Join me in supporting Independent Candidate Sai Prasad! Vote for Positive Change.',
+                            files: [file]
+                        });
+                        showToast('Shared successfully!', 'success');
+                    } catch (err) {
+                        if (err.name !== 'AbortError') {
+                            downloadBanner();
+                        }
+                    }
+                }, 'image/png');
+            } else {
+                downloadBanner();
+            }
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = message;
+            if (type === 'success') {
+                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-xl';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-info text-sky-400 text-xl';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
